@@ -31,7 +31,7 @@ class SearchForm extends Form {
     window.open(
       book.volumeInfo.infoLink,
       "win2",
-      "status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=1076,height=768,directories=no,location=no"
+      "status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=500,height=300,directories=no,location=no"
     );
   };
   renderTable() {
