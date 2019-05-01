@@ -76,15 +76,14 @@ class SearchForm extends Form {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="container">
-          <form>
-            {this.renderInput("query", "Query")}
-            {this.renderButton("Search")}
-          </form>
-        </div>
+      <div className="container">
+        <form>
+          {this.renderInput("query", "Query")}
+          {this.renderButton("Search")}
+        </form>
+
         {this.renderTable()}
-      </React.Fragment>
+      </div>
     );
   }
 }
