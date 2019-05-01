@@ -4,7 +4,7 @@ import Form from "../common/form";
 import httpService from "../services/httpService";
 import config from "../config.json";
 
-class LoginForm extends Form {
+class SearchForm extends Form {
   state = {
     data: { query: "" },
     errors: {},
@@ -35,47 +35,49 @@ class LoginForm extends Form {
     );
   };
   renderTable() {
-    return this.state.books.length === 0 ? (
-      <p>Results will appear here!</p>
-    ) : (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Book Image</th>
-            <th>Book Author</th>
-            <th>Book Title</th>
-            <th>Book Publisher</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.books.items.map(book => (
-            <tr key={book.id}>
-              <td>
-                <img alt="book" src={book.volumeInfo.imageLinks.thumbnail} />
-              </td>
-              <td>{book.volumeInfo.authors}</td>
-              <td>{book.volumeInfo.title}</td>
-              <td>{book.volumeInfo.publisher}</td>
-              <td>
-                <button
-                  type="button"
-                  className="btn btn-info"
-                  onClick={this.onSeeMoreClick.bind(book, book)}
-                >
-                  See More
-                </button>
-              </td>
+    if (this.state.books.length === 0) {
+      return <p className="container">Results will appear here!</p>;
+    } else {
+      return (
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Book Image</th>
+              <th>Book Author</th>
+              <th>Book Title</th>
+              <th>Book Publisher</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    );
+          </thead>
+          <tbody>
+            {this.state.books.items.map(book => (
+              <tr key={book.id}>
+                <td>
+                  <img alt="book" src={book.volumeInfo.imageLinks.thumbnail} />
+                </td>
+                <td>{book.volumeInfo.authors}</td>
+                <td>{book.volumeInfo.title}</td>
+                <td>{book.volumeInfo.publisher}</td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-info"
+                    onClick={this.onSeeMoreClick.bind(book, book)}
+                  >
+                    See More
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
   }
 
   render() {
     return (
       <React.Fragment>
-        <div>
+        <div className="container">
           <form>
             {this.renderInput("query", "Query")}
             {this.renderButton("Search")}
@@ -87,4 +89,4 @@ class LoginForm extends Form {
   }
 }
 
-export default LoginForm;
+export default SearchForm;
