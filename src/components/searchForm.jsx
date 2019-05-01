@@ -26,7 +26,8 @@ class SearchForm extends Form {
   }
 
   doSubmit = () => {
-    const bookSearch = this.state.data.query;
+    const query = this.state.data.query;
+    const bookSearch = query.split(" ").join("+");
     this.getBooks(bookSearch);
   };
   onSeeMoreClick = book => {
